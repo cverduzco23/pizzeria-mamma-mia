@@ -5,7 +5,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <a href="#" className="brand">🍕 ¡Pizzería Mamma Mía!</a>
+        <a href="#" className="brand">
+          🍕 ¡Pizzería Mamma Mía!
+        </a>
         <div className="nav-links">
           <button className="nav-button">🍕Home</button>
           {token ? (
@@ -19,7 +21,9 @@ const Navbar = () => {
               <button className="nav-button register">🔐Register</button>
             </>
           )}
-          <button className="nav-button cart">🛒Total: ${total.toLocaleString()}</button>
+          <button className="nav-button cart">
+            🛒Total: ${total.toLocaleString()}
+          </button>
         </div>
       </div>
     </nav>
@@ -27,4 +31,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
