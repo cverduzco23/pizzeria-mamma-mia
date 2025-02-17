@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
@@ -91,7 +92,7 @@ html, body {
   min-width: 280px;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background: white;
 }
 
@@ -204,4 +205,172 @@ html, body {
   color: green;
   text-align: center;
   font-weight: bold;
+}
+
+/* Cart.css */
+.cart-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.cart-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cart-details {
+  flex-grow: 1;
+  padding: 0 15px;
+  text-align: left;
+}
+
+.cart-details h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.cart-details p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.cart-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.cart-buttons button {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.cart-buttons button:hover {
+  background-color: #e5533d;
+}
+
+.cart-total {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.btn-pay {
+  display: inline-block;
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  margin-top: 20px;
+}
+
+.btn-pay:hover {
+  background-color: #218838;
+}
+
+/* CardPizza.css */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  max-width: 300px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.card-ingredients {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.card-ingredients li {
+  font-size: 14px;
+  color: #444;
+  background: #f3f3f3;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.btn-add {
+  background: #ff6347;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-add:hover {
+  background: #e5533d;
 }

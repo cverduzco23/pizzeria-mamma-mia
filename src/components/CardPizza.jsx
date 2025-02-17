@@ -1,19 +1,20 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import "../App.css";
 
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ name, price, ingredients, img, desc }) => {
   return (
     <div className="card">
-      <img src={img} alt={name} className="card-img"/>
+      <img src={img} alt={name} className="card-img" />
       <div className="card-body">
-        <h3>{name}</h3>
-        <p className="ingredients">
-          <strong>Ingredientes:</strong> {ingredients.join(", ")}
-        </p>
+        <h3 className="card-title">{name}</h3>
+        <p className="card-desc">{desc}</p>
+        <ul className="card-ingredients">
+          {ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
         <p className="price">Precio: ${price.toLocaleString()}</p>
-        <div className="card-buttons">
-          <button className="btn btn-view">Ver Más 👀</button>
-          <button className="btn btn-add">Añadir 🛒</button>
-        </div>
+        <button className="btn btn-add">Añadir 🛒</button>
       </div>
     </div>
   );
@@ -24,9 +25,7 @@ CardPizza.propTypes = {
   price: PropTypes.number.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
   img: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
 };
 
 export default CardPizza;
-
-
-
