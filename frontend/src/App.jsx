@@ -1,23 +1,22 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// import Home from "./views/Home";
-// import Login from "./components/Login";
-// import Register from "./components/Register";
-import Cart from "./components/Cart";
-import "./App.css";
+import Home from "./views/Home";
+import Pizza from "./views/pizza";
 
 const App = () => {
   return (
-    <div>
+    <Router>
       <Navbar />
-      {/*<Home />
-      <Register/>
-      <Login/> */}
-      <Cart/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pizza/:id" element={<Pizza />} />
+      </Routes>
       <Footer />
-    </div>
+    </Router>
   );
 };
 
-
 export default App;
+
+
