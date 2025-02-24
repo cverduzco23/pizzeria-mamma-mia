@@ -302,15 +302,18 @@ body {
 
 /* CardPizza.css */
 .card {
-  background: #fff;
+  width: 30%;
+  min-width: 280px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  max-width: 300px;
-  text-align: center;
-  padding-bottom: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 15px;
 }
+
 
 .card:hover {
   transform: scale(1.05);
@@ -324,6 +327,10 @@ body {
 
 .card-body {
   padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .card-title {
@@ -373,4 +380,22 @@ body {
 
 .btn-add:hover {
   background: #e5533d;
+}
+
+.btn-view {
+  margin-top: auto;
+  display: block;
+  padding: 10px 15px;
+  background: #646cff;
+  color: white;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-view:hover {
+  background: #535bf2;
 }
