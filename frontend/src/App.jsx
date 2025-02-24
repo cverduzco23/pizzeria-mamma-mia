@@ -1,22 +1,24 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./views/Home";
+// import Home from "./views/Home";
 import Pizza from "./views/pizza";
+import "./App.css";
 
-const App = () => {
+function App() {
   return (
-    <Router>
+    <div>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pizza/:id" element={<Pizza />} />
-      </Routes>
+      {/*<Home />*/}
+      <Pizza />
       <Footer />
-    </Router>
+    </div>
   );
-};
+}
 
 export default App;
+
+
+
+
 
 

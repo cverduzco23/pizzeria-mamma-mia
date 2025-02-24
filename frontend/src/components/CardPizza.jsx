@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../App.css";
 
-const CardPizza = ({ id, name, price, ingredients, img, desc }) => {
+function CardPizza({ id, name, price, ingredients, img, desc }) {
   return (
     <div className="card">
       <img src={img} alt={name} className="card-img" />
@@ -15,13 +14,10 @@ const CardPizza = ({ id, name, price, ingredients, img, desc }) => {
           ))}
         </ul>
         <p className="price">Precio: ${price.toLocaleString()}</p>
-        <Link to={`/pizza/${id}`} className="btn btn-view">
-          Ver detalles
-        </Link>
       </div>
     </div>
   );
-};
+}
 
 CardPizza.propTypes = {
   id: PropTypes.string.isRequired,

@@ -1,34 +1,21 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import "../pizza.css";
 
-const Pizza = () => {
-  const { id } = useParams();
+function Pizza() {
   const [pizza, setPizza] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  async function fetchPizza() {
+    const response = await fetch("http://localhost:5000/api/pizzas/p001");
+    const data = await response.json();
+    setPizza(data);
+  }
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/pizzas/${id}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error al cargar la pizza");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setPizza(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false);
-      });
-  }, [id]);
+    fetchPizza();
+  }, []);
 
-  if (loading) return <p>Cargando pizza...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!pizza) return <p>Pizza no encontrada</p>;
+  if (!pizza) {
+    return <p>Cargando pizza...</p>;
+  }
 
   return (
     <div className="pizza-details">
@@ -41,11 +28,12 @@ const Pizza = () => {
         ))}
       </ul>
       <p className="price">Precio: ${pizza.price.toLocaleString()}</p>
-      <Link to="/" className="btn-back">
-        Volver al menú
-      </Link>
+      <button className="btn-add-cart">
+        Añadir al carrito 🛒
+      </button>
     </div>
   );
-};
+}
 
 export default Pizza;
+
