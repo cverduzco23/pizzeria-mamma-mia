@@ -1,22 +1,16 @@
-import PropTypes from "prop-types";
-
-const Navbar = ({ toggleCart }) => {
+function Navbar () {
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <a href="#" className="brand">
           🍕 ¡Pizzería Mamma Mía!
         </a>
-        <button className="nav-button cart" onClick={toggleCart}>
+        <button className="nav-button cart">
           🛒 Carrito
         </button>
       </div>
     </nav>
   );
-};
-
-Navbar.propTypes = {
-  toggleCart: PropTypes.func.isRequired,
 };
 
 export default Navbar;

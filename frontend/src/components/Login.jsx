@@ -34,13 +34,23 @@ function Login() {
     setSuccess("Inicio de sesión exitoso");
   }
 
+  let errorMessage = null;
+  let successMessage = null;
+
+  if (error) {
+    errorMessage = <p className="error">{error}</p>;
+  }
+
+  if (success) {
+    successMessage = <p className="success">{success}</p>;
+  }
+
   return (
     <div className="form-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
-
+        {errorMessage}
+        {successMessage}
         <input
           type="email"
           name="email"
@@ -55,7 +65,6 @@ function Login() {
           value={formData.password}
           onChange={handleChange}
         />
-
         <button type="submit">Iniciar Sesión</button>
       </form>
     </div>

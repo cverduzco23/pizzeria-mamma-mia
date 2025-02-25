@@ -9,7 +9,7 @@ function Pizza() {
     setPizza(data);
   }
 
-  useEffect(() => {
+  useEffect(function () {
     fetchPizza();
   }, []);
 
@@ -17,23 +17,20 @@ function Pizza() {
     return <p>Cargando pizza...</p>;
   }
 
+  const pizzaList = pizza.ingredients.map(function (ingredient, index) {
+    return <li key={index}>{ingredient}</li>;
+  });
+
   return (
     <div className="pizza-details">
       <h2>{pizza.name}</h2>
       <img src={pizza.img} alt={pizza.name} />
       <p>{pizza.desc}</p>
-      <ul>
-        {pizza.ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
-        ))}
-      </ul>
+      <ul>{pizzaList}</ul>
       <p className="price">Precio: ${pizza.price.toLocaleString()}</p>
-      <button className="btn-add-cart">
-        Añadir al carrito 🛒
-      </button>
+      <button className="btn-add-cart">Añadir al carrito 🛒</button>
     </div>
   );
 }
 
 export default Pizza;
-

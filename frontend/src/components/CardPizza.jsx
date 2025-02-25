@@ -1,31 +1,23 @@
-import PropTypes from "prop-types";
-import "../App.css";
+function CardPizza(props) {
 
-function CardPizza({ id, name, price, ingredients, img, desc }) {
+  const ingredientsList = props.ingredients.map(function (ingredient, index) {
+    return <li key={index}>{ingredient}</li>;
+  })
+
   return (
     <div className="card">
-      <img src={img} alt={name} className="card-img" />
+      <img src={props.img} alt={props.name} className="card-img" />
       <div className="card-body">
-        <h3 className="card-title">{name}</h3>
-        <p className="card-desc">{desc}</p>
+        <h3 className="card-title">{props.name}</h3>
+        <p className="card-desc">{props.desc}</p>
         <ul className="card-ingredients">
-          {ingredients.map((ingredient, index) => (
-            <li key={index}>{ingredient}</li>
-          ))}
+          {ingredientsList}
         </ul>
-        <p className="price">Precio: ${price.toLocaleString()}</p>
+        <p className="price">Precio: ${props.price.toLocaleString()}</p>
       </div>
     </div>
   );
 }
 
-CardPizza.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-  img: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-};
-
 export default CardPizza;
+

@@ -1,29 +1,100 @@
-import { useState } from "react";
-import { pizzaCart } from "../pizzas";
-import "../App.css";
+import { useState, useEffect } from "react";
 
-const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart);
+function Cart() {
+  const [cart, setCart] = useState([]);
 
-  const increaseQuantity = (id) => {
+  async function fetchPizzas() {
+    try {
+      const response = await fetch("http://localhost:5000/api/pizzas");
+      const data = await response.json();
+      const pizzas = data.map(function (pizza) {
+        return { ...pizza, count: 1 };
+      });
+      setCart(pizzas);
+    } catch (error) {
+      console.error("Error al obtener las pizzas:", error);
+    }
+  }
+
+  useEffect(function () {
+    fetchPizzas();
+  }, []);
+
+  function increaseQuantity(id) {
     setCart(
-      cart.map((pizza) =>
-        pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
-      )
+      cart.map(function (pizza) {
+        if (pizza.id === id) {
+          return { ...pizza, count: pizza.count + 1 };
+        }
+        return pizza;
+      })
     );
-  };
+  }
 
-  const decreaseQuantity = (id) => {
+  function decreaseQuantity(id) {
     setCart(
       cart
-        .filter((pizza) => pizza.id !== id || pizza.count > 1)
-        .map((pizza) =>
-          pizza.id === id ? { ...pizza, count: pizza.count - 1 } : pizza
-        )
+        .filter(function (pizza) {
+          return !(pizza.id === id && pizza.count === 1);
+        })
+        .map(function (pizza) {
+          if (pizza.id === id) {
+            return { ...pizza, count: pizza.count - 1 };
+          }
+          return pizza;
+        })
     );
-  };
+  }
 
-  const total = cart.reduce((sum, pizza) => sum + pizza.price * pizza.count, 0);
+  const total = cart.reduce(function (sum, pizza) {
+    return sum + pizza.price * pizza.count;
+  }, 0);
+
+  const pizzaList = cart.map(function (pizza) {
+    let buttonDeleteDecrease;
+    if (pizza.count === 1) {
+      buttonDeleteDecrease = (
+        <button
+          onClick={function () {
+            decreaseQuantity(pizza.id);
+          }}
+        >
+          🗑 Eliminar
+        </button>
+      );
+    } else {
+      buttonDeleteDecrease = (
+        <button
+          onClick={function () {
+            decreaseQuantity(pizza.id);
+          }}
+        >
+          ➖
+        </button>
+      );
+    }
+
+    return (
+      <div key={pizza.id} className="cart-item">
+        <img src={pizza.img} alt={pizza.name} className="cart-img" />
+        <div className="cart-details">
+          <h4>{pizza.name}</h4>
+          <p>Precio: ${pizza.price.toLocaleString()}</p>
+          <p>Cantidad: {pizza.count}</p>
+          <div className="cart-buttons">
+            <button
+              onClick={function () {
+                increaseQuantity(pizza.id);
+              }}
+            >
+              ➕
+            </button>
+            {buttonDeleteDecrease}
+          </div>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <div className="cart-container">
@@ -32,26 +103,13 @@ const Cart = () => {
         <p>El carrito está vacío</p>
       ) : (
         <div className="cart-items">
-          {cart.map((pizza) => (
-            <div key={pizza.id} className="cart-item">
-              <img src={pizza.img} alt={pizza.name} className="cart-img" />
-              <div className="cart-details">
-                <h4>{pizza.name}</h4>
-                <p>Precio: ${pizza.price.toLocaleString()}</p>
-                <p>Cantidad: {pizza.count}</p>
-                <div className="cart-buttons">
-                  <button onClick={() => increaseQuantity(pizza.id)}>➕</button>
-                  <button onClick={() => decreaseQuantity(pizza.id)}>➖</button>
-                </div>
-              </div>
-            </div>
-          ))}
+          {pizzaList}
           <h3 className="cart-total">Total: ${total.toLocaleString()}</h3>
           <button className="btn-pay">Pagar</button>
         </div>
       )}
     </div>
   );
-};
+}
 
 export default Cart;

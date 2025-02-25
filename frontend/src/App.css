@@ -314,11 +314,6 @@ body {
   padding-bottom: 15px;
 }
 
-
-.card:hover {
-  transform: scale(1.05);
-}
-
 .card-img {
   width: 100%;
   height: 200px;
@@ -468,20 +463,3 @@ body {
 .pizza-details .btn-back:hover {
   background: #cc5200;
 }
-
-.btn-add-cart {
-  margin-top: 15px;
-  padding: 10px 15px;
-  background: #ff6600;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.btn-add-cart:hover {
-  background: #cc5200;
-}
-
