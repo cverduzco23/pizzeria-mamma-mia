@@ -39,7 +39,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-links a:hover {
@@ -48,6 +48,14 @@
 
 .nav-links a:last-child {
   font-weight: bold;
+  color: #ffd700;
+  transition: 0.3s ease-in-out;
+}
+
+.nav-links a:last-child:hover {
+  scale: 1.1;
+  margin-left: 15px;
+  color: rgb(255, 106, 0);
 }
 
 .nav-links a::before {
@@ -58,4 +66,3 @@
 body {
   padding-top: 60px;
 }
-

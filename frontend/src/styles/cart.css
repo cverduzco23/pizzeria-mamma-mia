@@ -76,6 +76,11 @@
   background-color: #e5533d;
 }
 
+.cart-buttons button:active {
+  outline: none;
+  border: none;
+}
+
 .cart-total {
   font-size: 20px;
   font-weight: bold;
@@ -92,6 +97,7 @@
   cursor: pointer;
   border: none;
   margin-top: 20px;
+  transition: 0.3s ease-in;
 }
 
 .btn-pay:hover {

@@ -3,8 +3,8 @@ import "../styles/Profile.css";
 function Profile() {
   return (
     <div className="profile-container">
-      <h2>Perfil de Usuario</h2>
       <div className="profile-card">
+        <h2>Perfil de Usuario</h2>
         <img
           src="./assets/images/usuario.webp"
           alt="Usuario default"
