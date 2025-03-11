@@ -9,8 +9,12 @@ export function UserProvider ({children}) {
         setToken(false);
     }
 
+    function logIn () {
+        setToken(true);
+    }
+
     return (
-        <UserContext.Provider value={{token, logOut}}>
+        <UserContext.Provider value={{token, logOut, logIn}}>
             {children}
         </UserContext.Provider>
     );

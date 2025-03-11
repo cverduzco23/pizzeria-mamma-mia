@@ -33,7 +33,7 @@ function Navbar() {
 
           { token ? (
             <NavLink className={setActiveClass} to="/profile" data-icon="👤">
-              Perfil
+              Mi Perfil
             </NavLink>
           ) : null}
 

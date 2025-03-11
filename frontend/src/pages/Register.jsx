@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "../styles/register.css";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ function Register() {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const { logIn } = useContext(UserContext);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,6 +43,8 @@ function Register() {
     }
 
     setSuccess("Registro exitoso");
+    logIn();
+    alert("✅🍕 Registro exitoso");
   }
 
   let errorMessage = null;

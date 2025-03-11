@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "../styles/login.css";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -9,6 +11,8 @@ function Login() {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  const { logIn } = useContext(UserContext);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,9 +34,11 @@ function Login() {
     if (password.length < 6) {
       setError("La contraseña debe tener al menos 6 caracteres");
       return;
+    } else {
+      setSuccess("Inicio de sesión exitoso");
+      logIn();
+      alert("✅🍕 Inicio de sesión exitoso");
     }
-
-    setSuccess("Inicio de sesión exitoso");
   }
 
   let errorMessage = null;
@@ -67,7 +73,9 @@ function Login() {
             value={formData.password}
             onChange={handleChange}
           />
-          <button type="submit">Iniciar Sesión</button>
+          <button type="submit">
+            Iniciar Sesión
+          </button>
         </form>
       </div>
     </div>
