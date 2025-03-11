@@ -1,16 +1,35 @@
 import { useContext } from "react";
 import { PizzaContext } from "../context/PizzaContext";
 import { CartContext } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../styles/pizza.css";
+import { useNavigate } from "react-router-dom";
 
 function Pizza() {
   const { pizzas } = useContext(PizzaContext);
   const { addToCart } = useContext(CartContext);
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  if (pizzas.length === 0) {
+    return (
+      <div className="loadingContainer">
+        <p className="loading">Cargando pizzas...</p>
+      </div>
+    );
+  }
 
   const pizza = pizzas.find(function (pizza) {
-    return pizza.id === "p001";
+    return pizza.id === id;
   });
+
+  if (!pizza) {
+    navigate("/*");
+  }
+
+  function NavigateToHome () {
+    navigate("/");
+  }
 
   return (
     <div className="pizza-container">
@@ -33,9 +52,9 @@ function Pizza() {
           Añadir al carrito 🛒
         </button>
         <br />
-        <Link to="/">
-          <button className="btn-back"><span>⬅</span>Regresar al menú</button>
-        </Link>
+          <button className="btn-back" onClick={NavigateToHome}>
+            <span>⬅</span>Regresar al menú
+          </button>
       </div>
     </div>
   );

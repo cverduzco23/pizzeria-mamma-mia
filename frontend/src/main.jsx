@@ -5,15 +5,18 @@ import "./styles/index.css";
 import App from "./App.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import { PizzaProvider } from "./context/PizzaContext.jsx";
+import { UserProvider } from "./context/UserContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <PizzaProvider>
-        <CartProvider>
-          <App />
-        </CartProvider>
-      </PizzaProvider>
+      <UserProvider>
+        <PizzaProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </PizzaProvider>
+      </UserProvider>
     </BrowserRouter>
   </StrictMode>
 );

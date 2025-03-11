@@ -39,11 +39,11 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: all 0.3s ease-in-out;
 }
 
 .nav-links a:hover {
-  color: #ffd700;
+  color: tomato;
+  cursor: pointer;
 }
 
 .nav-links a:last-child {
@@ -55,7 +55,7 @@
 .nav-links a:last-child:hover {
   scale: 1.1;
   margin-left: 15px;
-  color: rgb(255, 106, 0);
+  color: tomato;
 }
 
 .nav-links a::before {
@@ -63,6 +63,24 @@
   font-size: 1.5rem;
 }
 
-body {
-  padding-top: 60px;
+.nav-links a.active {
+  font-weight: bolder;
+  color: tomato;
+}
+
+.nav-links button {
+  background: #ff6347;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links button:hover {
+  background-color: #ff6347;
+  background: #ff3b1f;
+  transform: scale(1.04);
+  box-shadow: 1px rgba(0, 0, 0, 0.2);
 }

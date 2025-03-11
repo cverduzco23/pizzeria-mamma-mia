@@ -1,10 +1,16 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "../styles/navbar.css";
 import { CartContext } from "../context/CartContext.jsx";
 import { useContext } from "react";
+import { UserContext } from "../context/UserContext.jsx";
 
 function Navbar() {
   const { total } = useContext(CartContext);
+  const { token, logOut } = useContext(UserContext);
+
+  function setActiveClass({ isActive }) {
+    return isActive ? "active" : undefined;
+  }
 
   return (
     <nav className="navbar">
@@ -13,15 +19,30 @@ function Navbar() {
           🍕 Pizzería Mamma Mía!
         </Link>
         <div className="nav-links">
-          <Link to="/register" data-icon="📝">
-            Registro
-          </Link>
-          <Link to="/login" data-icon="🔑">
-            Login
-          </Link>
-          <Link to="/profile" data-icon="👤">
-            Perfil
-          </Link>
+          { token ? null : (
+            <NavLink className={setActiveClass} to="/register" data-icon="📝">
+              Registro
+            </NavLink>
+          )}
+
+          { token ? null : (
+            <NavLink className={setActiveClass} to="/login" data-icon="🔑">
+              Login
+            </NavLink>
+          )}
+
+          { token ? (
+            <NavLink className={setActiveClass} to="/profile" data-icon="👤">
+              Perfil
+            </NavLink>
+          ) : null}
+
+          { token ? (
+            <button data-icon="🔓" onClick={logOut}>
+              Cerrar Sesión
+            </button>
+          ) : null}
+
           <Link to="/cart" data-icon="🛒">
             Total: $ {total}
           </Link>

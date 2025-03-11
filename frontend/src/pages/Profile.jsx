@@ -1,6 +1,18 @@
 import "../styles/Profile.css";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+
+  const { logOut } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  function logOutFunc () {
+    logOut();
+    navigate("/");
+  }
+
   return (
     <div className="profile-container">
       <div className="profile-card">
@@ -11,9 +23,9 @@ function Profile() {
           className="usuario-default"
         />
         <p>
-          <strong>Email:</strong> usuario@example.com
+          <strong>Email:</strong> cesar.v@myemail.com
         </p>
-        <button className="logout-button">Cerrar sesión</button>
+        <button className="logout-button" onClick={logOutFunc}>Cerrar sesión</button>
       </div>
     </div>
   );

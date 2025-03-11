@@ -10,6 +10,7 @@ function Home() {
   return (
     <div className="home-container">
       <Header />
+
       <div className="pizza-list">
         {pizzas.map(function (pizza) {
           return <CardPizza key={pizza.id} {...pizza} />;

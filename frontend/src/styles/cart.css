@@ -103,3 +103,18 @@
 .btn-pay:hover {
   background-color: #218838;
 }
+
+.btn-login {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #cc5200;
+}
