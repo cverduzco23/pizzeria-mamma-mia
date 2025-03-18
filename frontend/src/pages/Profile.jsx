@@ -1,4 +1,4 @@
-import "../styles/Profile.css";
+import "../styles/profile.css";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
