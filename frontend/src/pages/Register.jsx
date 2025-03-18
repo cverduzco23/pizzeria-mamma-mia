@@ -12,7 +12,7 @@ function Register() {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { logIn } = useContext(UserContext);
+  const { register } = useContext(UserContext);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -42,9 +42,7 @@ function Register() {
       return;
     }
 
-    setSuccess("Registro exitoso");
-    logIn();
-    alert("✅🍕 Registro exitoso");
+    register(formData.email, formData.password);
   }
 
   let errorMessage = null;

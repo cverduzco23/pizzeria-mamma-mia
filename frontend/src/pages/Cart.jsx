@@ -1,17 +1,37 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import "../styles/cart.css";
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 function Cart() {
-  const { cart, total, increaseQuantity, decreaseQuantity } =
+  const { cart, total, increaseQuantity, decreaseQuantity, setCart } =
     useContext(CartContext);
-  const { token, logOut } = useContext(UserContext);
+  const { token } = useContext(UserContext);
   const navigate = useNavigate();
 
   function navigateToLogin() {
     navigate("/login");
+  }
+
+  async function sendCart() {
+    const response = await fetch("http://localhost:5000/api/checkouts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ cart }),
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("✅ Compra realizada con éxito.");
+      setCart([]);
+      navigate("/");
+    } else {
+      alert("❌ Error en la compra. Intente nuevamente.");
+    }
   }
 
   let contentCart;
@@ -76,8 +96,16 @@ function Cart() {
           );
         })}
         <h3 className="cart-total">Total: ${total}</h3>
-        {token ? <button className="btn-pay">Pagar</button> : null}
-        {token ? null : <button className="btn-login" onClick={navigateToLogin}>Inicia sesión para continuar</button>}
+        {token ? (
+          <button className="btn-pay" onClick={sendCart}>
+            Pagar
+          </button>
+        ) : null}
+        {token ? null : (
+          <button className="btn-login" onClick={navigateToLogin}>
+            Inicia sesión para continuar
+          </button>
+        )}
       </div>
     );
   }

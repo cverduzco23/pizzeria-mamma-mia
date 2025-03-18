@@ -10,9 +10,8 @@ function Login() {
   });
 
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
-  const { logIn } = useContext(UserContext);
+  const { token, login } = useContext(UserContext);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,7 +20,6 @@ function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     setError("");
-    setSuccess("");
 
     var email = formData.email;
     var password = formData.password;
@@ -35,21 +33,19 @@ function Login() {
       setError("La contraseña debe tener al menos 6 caracteres");
       return;
     } else {
-      setSuccess("Inicio de sesión exitoso");
-      logIn();
-      alert("✅🍕 Inicio de sesión exitoso");
+      login(formData.email, formData.password);
+      if (token) {
+        setError(null)
+      } else {
+        setError("Error en el inicio de sesión. Verifique sus credenciales.");
+      }
     }
   }
 
   let errorMessage = null;
-  let successMessage = null;
 
   if (error) {
     errorMessage = <p className="error">{error}</p>;
-  }
-
-  if (success) {
-    successMessage = <p className="success">{success}</p>;
   }
 
   return (
@@ -58,7 +54,6 @@ function Login() {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           {errorMessage}
-          {successMessage}
           <input
             type="email"
             name="email"
